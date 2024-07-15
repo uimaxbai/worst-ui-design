@@ -1,0 +1,47 @@
+@use './mixins' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+}
+
+:root {
+    --fds-font-family-monospace: "Cascadia Mono", "Fira Code", "Consolas", monospace;
+    color-scheme: light dark;
+}
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    @include typography-body;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    color: var(--fds-text-primary);
+    user-select: revert;
+    background-color: var(--fds-solid-background-base);
+}
+
+// Codeblock syntax highlighting
+code {
+    @media (prefers-color-scheme: light) {
+        @include prism-vs-light;
+    }
+    @media (prefers-color-scheme: dark) {
+        @include prism-vs-dark;
+    }
+}
